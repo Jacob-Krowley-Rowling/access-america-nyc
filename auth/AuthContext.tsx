@@ -30,9 +30,7 @@ function computeIsRoot(user: User | null): boolean {
   if (rootUid && user.uid === rootUid) return true;
 
   const rootEmail = normalizeEmail(import.meta.env.VITE_ROOT_ADMIN_EMAIL);
-  if (rootEmail && normalizeEmail(user.email) === rootEmail) return true;
-
-  return false;
+  return Boolean(rootEmail && normalizeEmail(user.email) === rootEmail);
 }
 
 export const AuthProvider: React.FC<React.PropsWithChildren> = ({ children }) => {
